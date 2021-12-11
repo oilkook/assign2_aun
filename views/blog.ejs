@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="urf-8" />
+    <title></title>
+  </head>
+  <body>
+    <%- include layout %>
+    <div class="container">
+      <h2 align="center">ข้อมูลเข้ารับวัคซีน</h2>
+      <a href="/blog/add">เพิ่มข้อมูล</a>
+    </div>
+
+    <div class="card-body">
+      <% if(data.length) { %>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">ชื่อ</th>
+                      <th scope="col">ครั้ง</th>
+                      <th scope="col">วัคซีน</th>
+                      <th width="200px">แก้ไข/ลบ</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% for(let i = 0; i < data.length; i++) { %>
+                      <tr>
+                          <th scope="row"><%= data[i].id %></th>
+                          <td><%= data[i].name %></td>
+                          <td><%= data[i].num_vaccine %></td>
+                          <td><%= data[i].name_vaccine %></td>
+                          <td>
+                              <a href="../blog/edit/<%= data[i]._id %>" class="btn btn-success edit">Edit</a>
+                              <a href="../blog/delete/<%= data[i]._id %>" onclick="return alert('Are you sure?')" class="btn btn-danger delete">Delete</a>
+                          </td>
+                      </tr>
+                  <% } %>
+              </tbody>
+          </table>
+      <% } %>
+
+      <!-- if result is empty -->
+      <% if(!data.length) { %>
+          <p class="text-center">ไม่มีผู้ลงทะเบียน!</p>
+      <% } %>
+  </div>
+
+  </body>
+</html>
